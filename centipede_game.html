@@ -11,19 +11,20 @@
 </head>
 
 <body>
-    <h1 class="title">Centipede Game - Visualization!</h1>
+    <h1 class="title">💰 Centipede Game - Visualization! 🐛</h1>
     <div id="main">
         <form id="form" method="get" action="">
 
         </form>
-        <p id="round">Round: <short id="round_value">0</short>/100<br> Player Turn: <short id="player_turn"></short></p>
-        <p id="p2_score" style="text-align: center;">P2 Score: <short id="p2_score_value">0</short></p>
-        <div style="display: flex; align-items: center; justify-content: space-evenly">
+        <p id="round">Round: <short id="round_value">0</short>/100</p>
+        <p class="player_turn">Player Turn: <short id="player_turn"></short></p>
+        <p id="p2_score" class="score">P2 Score: <short id="p2_score_value">0</short></p>
+        <div class="buttons">
             <button id="continue" class="button">continue</button>
-            <div style="width:100px; height:100px; border: 2px solid #efefef; display: flex; justify-content: center; flex-direction: column; text-align: center; font-weight: bolder; font-size: x-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">2$</div>
+            <div class="pot">2$</div>
             <button id="end" class="button">end</button>
         </div>
-        <p id="p1_score" style="text-align: center;">P1 Score: <short id="p1_score_value">0</short></p>
+        <p id="p1_score" class="score">P1 Score: <short id="p1_score_value">0</short></p>
     </div>
 </body>
 </html>

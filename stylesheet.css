@@ -3,9 +3,10 @@ body {
 }
 
 #main {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 10% 50% 10% auto;
     row-gap: 5px;
+    justify-content: center;
 }
 
 #form {
@@ -40,27 +41,28 @@ th {
     text-align: center;
 }
 
-.title{
+.title {
     text-align: center;
     font-family: 'Brush Script', Georgia, 'Times New Roman', Times, serif;
     padding: 2%;
 }
 
-.settings, .util{
+.settings,
+.util {
     display: grid;
     grid-template-columns: auto 40%;
 }
 
-.settings{
+.settings {
     grid-column: 1;
     column-gap: 10px;
 }
 
-.settings label{
+.settings label {
     width: max-content;
 }
 
-.util-label{
+.util-label {
     grid-column: 2;
     width: auto;
     text-align: center;
@@ -69,28 +71,91 @@ th {
     font-weight: bold;
 }
 
-.util{
+.util {
     grid-column: 2;
     border-collapse: collapse;
     padding: 1%;
 }
 
-.util label{
+.util label {
     font-weight: bold;
     width: 100%;
 }
-.util input{
+
+.util input {
     text-align: center;
 }
 
-.util label, .util input{
+.util label,
+.util input {
     border: 1px solid #000000;
     padding: 2%;
 }
 
-.button{
+.button {
     margin: 2%;
     font-size: medium;
     /* width: 10%; */
     padding: 1%;
+}
+
+.score {
+    text-align: center;
+}
+
+.pot {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #efefef;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.buttons #continue {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.buttons #pot {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.buttons #end {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+#round {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.player_turn {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+#p2_score {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#p1_score {
+    grid-column: 3;
+    grid-row: 4;
 }
