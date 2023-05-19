@@ -3,8 +3,8 @@ var buttonEnd = document.querySelector("#end");
 var player_turn = document.querySelector("#player_turn");
 var round_value = document.querySelector("#round_value");
 
-const round_add = 10;
-const ENDING_ROUND = 100;
+const round_add = 1;
+const ENDING_ROUND = 15;
 
 const CENTIPEDE_MOVE = { CONTINUE: 0, END: 1, HONOR: 2, DEFECT: 3, length: 4 };
 var arrayCentipedeName = [3];
@@ -102,10 +102,33 @@ function checkRound(max_round){
 
 function setScore(player_num, score_addition){
     let player_score = document.getElementById(`p${player_num}_score_value`);
+    let score_addition_elem = document.getElementById(`p${player_num}_score_addition`);
+    score_addition_elem.innerHTML = score_addition;
+    let direction = player_num == 1 ? 1 : (-1);
+    animateScoreAddition(score_addition_elem, direction);
     player_score.innerHTML = Number.parseInt(player_score.innerHTML) + score_addition;
 }
 
 function getScore(player_num){
     let player_score = document.getElementById(`p${player_num}_score_value`);
     return Number.parseInt(player_score.innerHTML);
+}
+
+function animateScoreAddition(score_addition, direction){
+    score_addition.style.opacity = "100%";
+    let id = null;
+    const elem = score_addition;
+    const startPos = 50 - 20 * direction;
+    let pos = 50 - 20 * direction;
+    clearInterval(id);
+    id = setInterval(frame, 22);
+    function frame() {
+        if (pos == startPos - 60 * direction) {
+            clearInterval(id);
+            score_addition.style.opacity = "0%";
+          } else {
+            pos-= 3 * direction; 
+            elem.style.top = pos + "px";
+          }
+        }
 }

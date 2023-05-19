@@ -16,15 +16,17 @@
         <form id="form" method="get" action="">
 
         </form>
-        <p id="round">Round: <short id="round_value">0</short>/100</p>
+        <p id="round">Round: <short><short id="round_value">0</short>/15</short></p>
         <p class="player_turn">Player Turn: <short id="player_turn"></short></p>
-        <p id="p2_score" class="score">P2 Score: <short id="p2_score_value">0</short></p>
-        <div class="buttons">
-            <button id="continue" class="button">continue</button>
-            <div class="pot">2$</div>
-            <button id="end" class="button">end</button>
+        <div class="game_center">
+            <p id="p2_score" class="score">P2 Score: <short id="p2_score_value">0</short></p>
+            <div class="buttons">
+                <button id="continue" class="button">continue</button>
+                <div class="pot"><short id="p2_score_addition"></short>2$<short id="p1_score_addition"></short></div>
+                <button id="end" class="button">end</button>
+            </div>
+            <p id="p1_score" class="score">P1 Score: <short id="p1_score_value">0</short></p>
         </div>
-        <p id="p1_score" class="score">P1 Score: <short id="p1_score_value">0</short></p>
     </div>
 </body>
 </html>
