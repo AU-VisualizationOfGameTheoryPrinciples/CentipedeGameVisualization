@@ -17,41 +17,96 @@ arrayCentipedeName[CENTIPEDE_MOVE.DEFECT] = "defect";
 buttonContinue.addEventListener("click", () => startGameRound(CENTIPEDE_MOVE.CONTINUE));
 buttonEnd.addEventListener("click", () => startGameRound(CENTIPEDE_MOVE.END));
 
-function setPlayerTurn(player_num){
+/* TO BE MOVED IN ANOTHER MODULE */
+
+var canvas = document.getElementById("centipede_graph");
+if (canvas) {
+    var ctx = canvas.getContext("2d");
+    var lineSteps2 = 50;
+    var tempX = canvas.width / 2;
+    var tempY = 20;
+
+    for (let i = 0; i <= ENDING_ROUND; i++) {
+        let utility_value_p1 = i + score_defect_add * ((i + 1) % 2);
+        let utility_value_p2 = i + score_defect_add * (i % 2);
+        setText(tempX + lineSteps2, tempY + lineSteps2 + 5, `(${utility_value_p1},${utility_value_p2})`);
+        tempY = tempY + lineSteps2 + 10;
+    }
+    setText(tempX - 25, tempY + lineSteps2 + 20, `(${ENDING_ROUND + score_defect_add / 2},${ENDING_ROUND + score_defect_add / 2})`);
+
+    function setText(x, y, content) {
+        ctx.font = "1rem Arial";
+        ctx.fillStyle = "#000000";
+        ctx.fillText(content, x, y);
+        // ctx.strokeText(content, x, y);
+    }
+
+    function drawPoint(x, y, color) {
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function drawRectangle(x, y, color = "#000000") {
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeRect(x, y, 100, 30);
+        // ctx.stroke();
+    }
+
+    function drawTriangleArrow(tipX, tipY, color, rightOrDown = "right") {
+        let multiplicator = (rightOrDown == "down") ? -1 : 1;
+
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.moveTo(tipX, tipY);
+        ctx.lineTo(tipX - (10 * multiplicator), tipY + (10 * multiplicator));
+        ctx.lineTo(tipX - 10, tipY - 10);
+        ctx.fill();
+        ctx.strokeStyle = "#000000";
+        ctx.stroke();
+    }
+}
+
+/**/
+
+function setPlayerTurn(player_num) {
     player_turn.innerText = player_num;
 }
 
-function getPlayerTurn(){
+function getPlayerTurn() {
     return Number.parseInt(player_turn.innerText);
 }
-function endGame(ending_move){
+function endGame(ending_move) {
     buttonContinue.disabled = "true";
     buttonEnd.disabled = "true";
 
     let currentPlayer = getPlayerTurn();
-    let otherPlayer = (getPlayerTurn()+2)%2+1;
+    let otherPlayer = (getPlayerTurn() + 2) % 2 + 1;
 
     let finishingMessage = "P1: " + getScore(1) + " P2: " + getScore(2) + "\n";
-    finishingMessage+= "Player " + currentPlayer + " has ended the Game ";
+    finishingMessage += "Player " + currentPlayer + " has ended the Game ";
     let winningMessage = "He has " + (getScore(currentPlayer) - getScore(otherPlayer)) + " more bucks than Player " + otherPlayer + "!";
-    switch(ending_move){
+    switch (ending_move) {
         case CENTIPEDE_MOVE.END: {
-            if(checkRound(0)){
-                finishingMessage+= "right away!\n";
+            if (checkRound(0)) {
+                finishingMessage += "right away!\n";
             } else {
-                finishingMessage+= "inbetween.\n";
+                finishingMessage += "inbetween.\n";
             }
-            finishingMessage+= winningMessage;
+            finishingMessage += winningMessage;
             break;
         }
         case CENTIPEDE_MOVE.DEFECT: {
-            finishingMessage+= "and defected at the last turn.\n";
-            finishingMessage+= winningMessage;
+            finishingMessage += "and defected at the last turn.\n";
+            finishingMessage += winningMessage;
             break;
         }
         case CENTIPEDE_MOVE.HONOR: {
-            finishingMessage+= "and shared the money with Player " + otherPlayer + ".\n";
-            finishingMessage+= "They both won " + getScore(1) + "$!";
+            finishingMessage += "and shared the money with Player " + otherPlayer + ".\n";
+            finishingMessage += "They both won " + getScore(1) + "$!";
             break;
         }
     }
@@ -60,11 +115,11 @@ function endGame(ending_move){
 
 setPlayerTurn(1);
 
-function startGameRound(move){
+function startGameRound(move) {
     let round = getRoundValue();
 
-    if(canvas)
-    drawPoint(tempX, 20 + lineSteps2 + (lineSteps2+10) * round, "#FF0000");
+    if (canvas)
+        drawPoint(tempX, 20 + lineSteps2 + (lineSteps2 + 10) * round, "#FF0000");
 
     if(move == CENTIPEDE_MOVE.CONTINUE){
         setScore(1,1);
@@ -73,7 +128,7 @@ function startGameRound(move){
             endGame(CENTIPEDE_MOVE.HONOR);
             return;
         }
-    } else if(move == CENTIPEDE_MOVE.END){
+    } else if (move == CENTIPEDE_MOVE.END) {
         setScore(getPlayerTurn(), 2);
         if(checkRound(ENDING_ROUND)){
             endGame(CENTIPEDE_MOVE.DEFECT);
@@ -84,27 +139,27 @@ function startGameRound(move){
     }
 
     addRound();
-    if(checkRound(ENDING_ROUND)){
+    if (checkRound(ENDING_ROUND)) {
         buttonContinue.textContent = arrayCentipedeName[CENTIPEDE_MOVE.HONOR];
         buttonEnd.textContent = arrayCentipedeName[CENTIPEDE_MOVE.DEFECT];
     }
-    setPlayerTurn((getPlayerTurn()+2)%2+1);
+    setPlayerTurn((getPlayerTurn() + 2) % 2 + 1);
 }
 
 
-function getRoundValue(){
+function getRoundValue() {
     return Number.parseInt(round_value.innerText);
 }
 
-function addRound(){
+function addRound() {
     round_value.innerText = getRoundValue() + round_add;
 }
 
-function checkRound(max_round){
+function checkRound(max_round) {
     return getRoundValue() == max_round;
 }
 
-function setScore(player_num, score_addition){
+function setScore(player_num, score_addition) {
     let player_score = document.getElementById(`p${player_num}_score_value`);
     let score_addition_elem = document.getElementById(`p${player_num}_score_addition`);
     score_addition_elem.innerHTML = score_addition;
@@ -113,12 +168,12 @@ function setScore(player_num, score_addition){
     player_score.innerHTML = Number.parseInt(player_score.innerHTML) + score_addition;
 }
 
-function getScore(player_num){
+function getScore(player_num) {
     let player_score = document.getElementById(`p${player_num}_score_value`);
     return Number.parseInt(player_score.innerHTML);
 }
 
-function animateScoreAddition(score_addition, direction){
+function animateScoreAddition(score_addition, direction) {
     score_addition.style.opacity = "100%";
     let id = null;
     const elem = score_addition;
@@ -130,40 +185,9 @@ function animateScoreAddition(score_addition, direction){
         if (pos == startPos - 60 * direction) {
             clearInterval(id);
             score_addition.style.opacity = "0%";
-          } else {
-            pos-= 3 * direction; 
+        } else {
+            pos -= 3 * direction;
             elem.style.top = pos + "px";
-          }
         }
+    }
 }
-
-var canvas = document.getElementById("centipede_graph");
-if(canvas){
-var ctx = canvas.getContext("2d");
-var lineSteps2 = 50;
-var tempX = canvas.width / 2;
-var tempY = 20;
-
-    for(let i = 0; i<ENDING_ROUND; i++){
-        let utility_value_p1 = i + score_defect_add * ((i+1) % 2);
-        let utility_value_p2 = i + score_defect_add * (i % 2);
-    setText(tempX+lineSteps2, tempY+lineSteps2 + 5, `(${utility_value_p1},${utility_value_p2})`);
-    tempY = tempY + lineSteps2 + 10;
-}
-setText(tempX - 25, tempY+lineSteps2 + 20, `(${ENDING_ROUND},${ENDING_ROUND})`);
-
-function setText(x, y, content) {
-    ctx.font = "1rem Arial";
-    // ctx.fillText(content, x, y);
-    ctx.strokeText(content, x, y);
-}
-
-function drawPoint(x, y, color) {
-    ctx.beginPath();
-    ctx.arc(x, y, 10, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = color;
-    ctx.fill();
-}
-}
-
