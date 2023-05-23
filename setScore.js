@@ -140,9 +140,9 @@ function animateScoreAddition(score_addition, direction){
 var canvas = document.getElementById("centipede_graph");
 if(canvas){
 var ctx = canvas.getContext("2d");
-let lineSteps2 = 50;
-let tempX = canvas.width / 2;
-let tempY = 20;
+var lineSteps2 = 50;
+var tempX = canvas.width / 2;
+var tempY = 20;
 
     for(let i = 0; i<ENDING_ROUND; i++){
         let utility_value_p1 = i + score_defect_add * ((i+1) % 2);
