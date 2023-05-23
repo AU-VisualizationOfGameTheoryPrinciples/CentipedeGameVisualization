@@ -5,6 +5,7 @@ var round_value = document.querySelector("#round_value");
 
 const round_add = 1;
 const ENDING_ROUND = 15;
+const score_defect_add = 2;
 
 const CENTIPEDE_MOVE = { CONTINUE: 0, END: 1, HONOR: 2, DEFECT: 3, length: 4 };
 var arrayCentipedeName = [3];
@@ -61,6 +62,9 @@ setPlayerTurn(1);
 
 function startGameRound(move){
     let round = getRoundValue();
+
+    if(canvas)
+    drawPoint(tempX, 20 + lineSteps2 + (lineSteps2+10) * round, "#FF0000");
 
     if(move == CENTIPEDE_MOVE.CONTINUE){
         setScore(1,1);
@@ -132,3 +136,34 @@ function animateScoreAddition(score_addition, direction){
           }
         }
 }
+
+var canvas = document.getElementById("centipede_graph");
+if(canvas){
+var ctx = canvas.getContext("2d");
+let lineSteps2 = 50;
+let tempX = canvas.width / 2;
+let tempY = 20;
+
+    for(let i = 0; i<ENDING_ROUND; i++){
+        let utility_value_p1 = i + score_defect_add * ((i+1) % 2);
+        let utility_value_p2 = i + score_defect_add * (i % 2);
+    setText(tempX+lineSteps2, tempY+lineSteps2 + 5, `(${utility_value_p1},${utility_value_p2})`);
+    tempY = tempY + lineSteps2 + 10;
+}
+setText(tempX - 25, tempY+lineSteps2 + 20, `(${ENDING_ROUND},${ENDING_ROUND})`);
+
+function setText(x, y, content) {
+    ctx.font = "1rem Arial";
+    // ctx.fillText(content, x, y);
+    ctx.strokeText(content, x, y);
+}
+
+function drawPoint(x, y, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+}
+

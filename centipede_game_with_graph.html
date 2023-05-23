@@ -8,20 +8,31 @@
     <title>Centipede Game - Visualization!</title>
     
     <link rel="stylesheet" href="stylesheet.css">
-    <script src="./calcUtility.js"></script>
 </head>
 
 <body>
-    <h1 class="title">Centipede Game - Visualization!</h1>
+    <h1 class="title">💰 Centipede Game - Visualization! 🐛</h1>
     <div id="main">
         <form id="form" method="get" action="">
-            <canvas>
-                
-            </canvas>
 
-            <button id="continue">continue</button>
-            <button id="end">end</button>
         </form>
+        <p id="round">Round: <short><short id="round_value">0</short>/15</short></p>
+        <p class="player_turn">Player Turn: <short id="player_turn"></short></p>
+        <div class="game_center">
+            <p id="p2_score" class="score">P2 Score: <short id="p2_score_value">0</short></p>
+            <div class="buttons">
+                <button id="continue" class="button">continue</button>
+                <div class="pot"><short id="p2_score_addition"></short>2$<short id="p1_score_addition"></short></div>
+                <button id="end" class="button">end</button>
+            </div>
+            <p id="p1_score" class="score">P1 Score: <short id="p1_score_value">0</short></p>
+        </div>
+        <div class="canvas" style="grid-column: 2; grid-row: 4">
+            <canvas id="centipede_graph" width="300" height="1000" style="width: 60%;"></canvas>
+        </div>
     </div>
 </body>
 </html>
+
+<script src="./setScore.js"></script>
+<script src="./drawCentipede.js"></script>
