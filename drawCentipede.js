@@ -30,8 +30,10 @@ function drawPoint(x, y, color) {
 
 function setText(x, y, content) {
     ctx.font = "1rem Arial";
+    ctx.fillStyle = "#000000";
+    ctx.fillText(content, x, y);
     // ctx.fillText(content, x, y);
-    ctx.strokeText(content, x, y);
+    // ctx.strokeText(content, x, y);
 }
 
 function drawLine(startX, startY, endX, endY) {
@@ -45,14 +47,17 @@ function drawCentipede() {
     let counter = 0;
     let tempX = canvas.width / 2;
     let tempY = 20;
-    while(counter<ENDING_ROUND_VALUE){
+    while(counter<=ENDING_ROUND_VALUE){
         drawLine(tempX, tempY, tempX, tempY+lineSteps);
         drawLine(tempX, tempY+lineSteps, tempX+lineSteps, tempY+lineSteps);
+        if(counter<ENDING_ROUND_VALUE)
+        drawLine(tempX, tempY+lineSteps, tempX-lineSteps, tempY+lineSteps);
         drawPoint(tempX, tempY+lineSteps, whiteColor);
     //  getUtility()
         // let utilityText = " (0,1) ";
         // setText(tempX+lineSteps, tempY+lineSteps + 5, utilityText);
         setText(tempX-5, tempY+lineSteps+5, counter%2+1)
+
         tempY = tempY + lineSteps + 10;
         counter++;
     }

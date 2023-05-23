@@ -121,18 +121,25 @@ function startGameRound(move) {
     if (canvas)
         drawPoint(tempX, 20 + lineSteps2 + (lineSteps2 + 10) * round, "#FF0000");
 
-    if(move == CENTIPEDE_MOVE.CONTINUE){
-        setScore(1,1);
-        setScore(2,1);
-        if(checkRound(ENDING_ROUND)){
+    if (move == CENTIPEDE_MOVE.CONTINUE) {
+        setScore(1, 1);
+        setScore(2, 1);
+        if (checkRound(ENDING_ROUND)) {
+            if (canvas)
+                drawTriangleArrow(tempX, tempY + lineSteps2, "#FF0000", "down");
+            // drawRectangle(tempX - 50, 20 + lineSteps2 + (lineSteps2+10) * round, "#FF0000")
             endGame(CENTIPEDE_MOVE.HONOR);
             return;
         }
     } else if (move == CENTIPEDE_MOVE.END) {
         setScore(getPlayerTurn(), 2);
-        if(checkRound(ENDING_ROUND)){
+        if (canvas)
+            drawTriangleArrow(tempX + lineSteps2, 20 + lineSteps2 + (lineSteps2 + 10) * round, "#FF0000");
+        if (checkRound(ENDING_ROUND)) {
+            // drawRectangle(tempX + lineSteps2 - 15, lineSteps2 + 5 + (lineSteps2+10) * (round-1), "#FF0000");
             endGame(CENTIPEDE_MOVE.DEFECT);
         } else {
+            // drawRectangle(tempX + lineSteps2 - 15, lineSteps2 + 5 + (lineSteps2+10) * round, "#FF0000");
             endGame(CENTIPEDE_MOVE.END);
         }
         return;
