@@ -5,16 +5,20 @@ body {
 #main {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: 2% 2% auto 5% 50%;
+    /* grid-template-rows: 2% 2% auto auto 5%; */
     /* row-gap: 5px; */
     justify-content: center;
     text-align: center;
+    align-items: center;
+    height: max-content;
 }
 
 .title {
     text-align: center;
     font-family: 'Brush Script', Georgia, 'Times New Roman', Times, serif;
-    padding: 2%;
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0em;
 }
 
 .button {
@@ -91,7 +95,8 @@ body {
 
 #round {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
+    padding-top: 1em;
 }
 
 #round>short {
@@ -125,24 +130,48 @@ body {
 }
 
 #game {
-    display: grid;
-    grid-template-columns: 0% auto;
-    align-items: normal;
-}
-.canvas > canvas {
-    height: 70%;
-}
-.canvas {
-    overflow-y: unset;
-    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
-@media (max-width: 880px) {
+.canvas {
+    overflow-y: scroll;
+    height: 200px;
+}
+
+@media (min-width: 1000px) {
     #game {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 14em auto;
+        align-items: normal;
+        padding: 1em;
     }
+
+    #game > .canvas {
+        grid-column: 1;
+    }
+
+    #game > .main {
+        grid-column: 2;
+    }
+
+    .canvas > canvas {
+        height: 70%;
+        border: 1px solid black;
+        padding-right: 0.8em;
+    }
+    .canvas {
+        overflow-y: unset;
+        height: 100%;
+        display: flex;
+    }
+
+    .title {
+        border: 1px solid black;
+        padding: 1em 3em;
+    }
+
 }
 
 
