@@ -19,6 +19,22 @@ body {
     grid-column: 2;
     grid-row: 1;
     margin: 0em;
+    display: flex;
+    border-bottom: 10px double black;
+    align-items: center;
+}
+
+.title > .logo, .title > h1{
+    padding: 0em 1em;
+}
+
+.logo {
+    max-width: 4.5em;
+    max-height: 4.5em;
+}
+
+.logo-bag {
+    margin-top: 2%;
 }
 
 .button {
