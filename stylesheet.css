@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Verdana, Tahoma, sans-serif;
 }
 
 #main {
@@ -15,7 +15,7 @@ body {
 
 .title {
     text-align: center;
-    font-family: 'Brush Script', Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Norican', 'Brush Script', Georgia, 'Times New Roman', Times, serif;
     grid-column: 2;
     grid-row: 1;
     margin: 0em;
@@ -24,7 +24,8 @@ body {
     align-items: center;
 }
 
-.title > .logo, .title > h1{
+.title>.logo,
+.title>h1 {
     padding: 0em 1em;
 }
 
@@ -59,6 +60,13 @@ body {
     position: absolute;
     z-index: 1;
     left: 45%;
+    color: white;
+    font-family: Arial, Verdana, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000000;
+    text-shadow: rgb(102, 255, 0) 2px 2px 2px;
 }
 
 .pot {
@@ -96,7 +104,8 @@ body {
 }
 
 .buttons #continue {
-    grid-column: 1
+    grid-column: 1;
+    box-shadow: 2px 2px 5px rgb(68, 68, 68);
 }
 
 .buttons #pot {
@@ -107,6 +116,7 @@ body {
 .buttons #end {
     grid-column: 3;
     /* grid-row: 3; */
+    box-shadow: 2px 2px 5px rgb(68, 68, 68);
 }
 
 #round {
@@ -164,19 +174,21 @@ body {
         padding: 1em;
     }
 
-    #game > .canvas {
+    #game>.canvas {
         grid-column: 1;
     }
 
-    #game > .main {
+    #game>.main {
         grid-column: 2;
     }
 
-    .canvas > canvas {
+    .canvas>canvas {
         height: 70%;
-        border: 1px solid black;
+        border: 2px solid black;
+        box-shadow: 2px 2px 5px rgb(68, 68, 68);
         padding-right: 0.8em;
     }
+
     .canvas {
         overflow-y: unset;
         height: 100%;
@@ -184,7 +196,8 @@ body {
     }
 
     .title {
-        border: 1px solid black;
+        border: 2px solid black;
+        box-shadow: 2px 2px 5px rgb(68, 68, 68);
         padding: 1em 3em;
     }
 
