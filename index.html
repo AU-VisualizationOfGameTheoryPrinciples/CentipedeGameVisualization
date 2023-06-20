@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centipede Game - Visualization!</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
@@ -17,7 +19,7 @@
         <img class="logo logo-bag" src="./img/money_bag.png">
     </div>
     <div id="main">
-        <div>
+        <div class="introduction">
             <p>This is a Visualization of the Centipede Game in Game Theory. There are two players switching turns and
                 by
                 continuing they increase the payoff but also the chance the other player quits for getting a better
@@ -29,7 +31,7 @@
                 game, than it's player 2's turn. It continues till one of the players is ending the game or the last
                 round is reached. The graph shows the possible payoffs for each player and the current state of the game.</p>
             <p>Press the Button to play the Game.</p>
-            <button onclick="window.location.href='./centipede_game_with_graph.html';">Continue</button>
+            <button class="button_shadow" onclick="window.location.href='./centipede_game_with_graph.html';">Continue</button>
         </div>
     </div>
 </body>
