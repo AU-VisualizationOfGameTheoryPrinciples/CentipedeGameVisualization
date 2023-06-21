@@ -149,7 +149,7 @@ body {
 .game_center {
     grid-column: 2;
     grid-row: 3;
-    margin: 3em 0em;
+    margin: 1em 0em;
 }
 
 #p2_score {
@@ -179,6 +179,7 @@ body {
         grid-template-columns: 14em auto;
         align-items: normal;
         padding: 1em;
+        max-height: 40em;
     }
 
     #game>.canvas {
@@ -190,7 +191,7 @@ body {
     }
 
     .canvas>canvas {
-        height: 70%;
+        /* height: 70%; */
         border: 2px solid black;
         box-shadow: 2px 2px 5px rgb(68, 68, 68);
         padding-right: 0.8em;
@@ -198,7 +199,7 @@ body {
 
     .canvas {
         overflow-y: unset;
-        height: 100%;
+        height: 80%;
         display: flex;
     }
 
