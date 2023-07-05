@@ -1,7 +1,9 @@
 const whiteColor = "#FFFFFF";
 const lineSteps = 50;
 var canvas = document.getElementById("centipede_graph");
-var ctx = canvas.getContext("2d");
+if (canvas){
+    var ctx = canvas.getContext("2d");
+}
 // ctx.moveTo(0, 20);
 // ctx.lineTo(100, 20);
 // ctx.stroke();
@@ -18,7 +20,7 @@ var ctx = canvas.getContext("2d");
 // ctx.stroke();
 // ctx.fillStyle = "#FFFFFF";
 // ctx.fill();
-drawCentipede();
+// drawCentipede();
 
 function drawPoint(x, y, color) {
     ctx.beginPath();
@@ -39,6 +41,26 @@ function setText(x, y, content) {
 function drawLine(startX, startY, endX, endY) {
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
+    ctx.stroke();
+}
+
+function drawRectangle(x, y, color = "#000000") {
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeRect(x, y, 100, 30);
+    // ctx.stroke();
+}
+
+function drawTriangleArrow(tipX, tipY, color, rightOrDown = "right") {
+    let multiplicator = (rightOrDown == "down") ? -1 : 1;
+
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.moveTo(tipX, tipY);
+    ctx.lineTo(tipX - (10 * multiplicator), tipY + (10 * multiplicator));
+    ctx.lineTo(tipX - 10, tipY - 10);
+    ctx.fill();
+    ctx.strokeStyle = "#000000";
     ctx.stroke();
 }
 
@@ -63,3 +85,5 @@ function drawCentipede() {
     }
     drawLine(tempX, tempY, tempX, tempY+lineSteps);
 }
+
+export {drawPoint, drawRectangle, drawLine, drawTriangleArrow, drawCentipede, setText};
