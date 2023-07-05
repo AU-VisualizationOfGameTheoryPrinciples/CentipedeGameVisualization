@@ -1,3 +1,9 @@
+import { setupAgent } from "./Centipede_Agent.js";
+import { drawCentipede, drawPoint, drawTriangleArrow, setText } from "./drawCentipede.js";
+
+var has_computer_agent = document.getElementById("p2_score").textContent.match("CPU") != null;
+var agent;
+
 var buttonContinue = document.querySelector("#continue");
 var buttonEnd = document.querySelector("#end");
 var player_turn = document.querySelector("#player_turn");
@@ -14,13 +20,23 @@ arrayCentipedeName[CENTIPEDE_MOVE.END] = "end";
 arrayCentipedeName[CENTIPEDE_MOVE.HONOR] = "honor";
 arrayCentipedeName[CENTIPEDE_MOVE.DEFECT] = "defect";
 
-buttonContinue.addEventListener("click", () => startGameRound(CENTIPEDE_MOVE.CONTINUE));
-buttonEnd.addEventListener("click", () => startGameRound(CENTIPEDE_MOVE.END));
+buttonContinue.addEventListener("click", () => {
+    lockButtons(true);
+    startGameRound(CENTIPEDE_MOVE.CONTINUE);
+}
+);
+buttonEnd.addEventListener("click", () => setTimeout(startGameRound(CENTIPEDE_MOVE.END), 1000));
+
+if (has_computer_agent) {
+    agent = setupAgent();
+    console.log(agent.strategy.type);
+}
 
 /* TO BE MOVED IN ANOTHER MODULE */
 
 var canvas = document.getElementById("centipede_graph");
 if (canvas) {
+    drawCentipede();
     var ctx = canvas.getContext("2d");
     var lineSteps2 = 50;
     var tempX = canvas.width / 2;
@@ -33,68 +49,48 @@ if (canvas) {
         tempY = tempY + lineSteps2 + 10;
     }
     setText(tempX - 25, tempY + lineSteps2 + 20, `(${ENDING_ROUND + score_defect_add / 2},${ENDING_ROUND + score_defect_add / 2})`);
-
-    function setText(x, y, content) {
-        ctx.font = "1rem Arial";
-        ctx.fillStyle = "#000000";
-        ctx.fillText(content, x, y);
-        // ctx.strokeText(content, x, y);
-    }
-
-    function drawPoint(x, y, color) {
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fillStyle = color;
-        ctx.fill();
-    }
-
-    function drawRectangle(x, y, color = "#000000") {
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.strokeRect(x, y, 100, 30);
-        // ctx.stroke();
-    }
-
-    function drawTriangleArrow(tipX, tipY, color, rightOrDown = "right") {
-        let multiplicator = (rightOrDown == "down") ? -1 : 1;
-
-        ctx.beginPath();
-        ctx.fillStyle = color;
-        ctx.moveTo(tipX, tipY);
-        ctx.lineTo(tipX - (10 * multiplicator), tipY + (10 * multiplicator));
-        ctx.lineTo(tipX - 10, tipY - 10);
-        ctx.fill();
-        ctx.strokeStyle = "#000000";
-        ctx.stroke();
-    }
 }
 
 /**/
 
 function setPlayerTurn(player_num) {
     player_turn.innerText = player_num;
+    player_turn.innerText += addNameForCPUGame(player_num);
+}
+
+function addNameForCPUGame(player_num) {
+    if (has_computer_agent) {
+        let agent_name = player_num == 1 ? "(You)" : "(CPU)";
+        return " " + agent_name;
+    } else {
+        return "";
+    }
 }
 
 function getPlayerTurn() {
     return Number.parseInt(player_turn.innerText);
 }
+
+function lockButtons(flag) {
+    buttonContinue.disabled = flag;
+    buttonEnd.disabled = flag;
+}
+
 function endGame(ending_move) {
-    buttonContinue.disabled = "true";
-    buttonEnd.disabled = "true";
+    lockButtons(true);
 
     let currentPlayer = getPlayerTurn();
     let otherPlayer = (getPlayerTurn() + 2) % 2 + 1;
 
     let finishingMessage = "P1: " + getScore(1) + " P2: " + getScore(2) + "\n";
-    finishingMessage += "Player " + currentPlayer + " has ended the Game ";
-    let winningMessage = "He has " + (getScore(currentPlayer) - getScore(otherPlayer)) + " more bucks than Player " + otherPlayer + "!";
+    finishingMessage += "Player " + currentPlayer + addNameForCPUGame(currentPlayer) + " has ended the Game ";
+    let winningMessage = "That player has " + (getScore(currentPlayer) - getScore(otherPlayer)) + " more bucks than Player " + otherPlayer + "!";
     switch (ending_move) {
         case CENTIPEDE_MOVE.END: {
             if (checkRound(0)) {
                 finishingMessage += "right away!\n";
             } else {
-                finishingMessage += "inbetween.\n";
+                finishingMessage += "in between.\n";
             }
             finishingMessage += winningMessage;
             break;
@@ -110,31 +106,38 @@ function endGame(ending_move) {
             break;
         }
     }
-    alert(finishingMessage);
+    setTimeout(() => alert(finishingMessage), 500);
 }
 
 setPlayerTurn(1);
 
 function startGameRound(move) {
+    // lockButtons(true);
     let round = getRoundValue();
 
-    if (canvas)
+    if (canvas) {
         drawPoint(tempX, 20 + lineSteps2 + (lineSteps2 + 10) * round, "#FF0000");
+    }
 
     if (move == CENTIPEDE_MOVE.CONTINUE) {
         setScore(1, 1);
         setScore(2, 1);
         if (checkRound(ENDING_ROUND)) {
-            if (canvas)
+            if (canvas) {
                 drawTriangleArrow(tempX, tempY + lineSteps2, "#FF0000", "down");
+            }
             // drawRectangle(tempX - 50, 20 + lineSteps2 + (lineSteps2+10) * round, "#FF0000")
             endGame(CENTIPEDE_MOVE.HONOR);
             return;
         }
+        setTimeout(() => {
+            lockButtons(false);
+        }, 1000);
     } else if (move == CENTIPEDE_MOVE.END) {
         setScore(getPlayerTurn(), 2);
-        if (canvas)
+        if (canvas) {
             drawTriangleArrow(tempX + lineSteps2, 20 + lineSteps2 + (lineSteps2 + 10) * round, "#FF0000");
+        }
         if (checkRound(ENDING_ROUND)) {
             // drawRectangle(tempX + lineSteps2 - 15, lineSteps2 + 5 + (lineSteps2+10) * (round-1), "#FF0000");
             endGame(CENTIPEDE_MOVE.DEFECT);
@@ -150,7 +153,23 @@ function startGameRound(move) {
         buttonContinue.textContent = arrayCentipedeName[CENTIPEDE_MOVE.HONOR];
         buttonEnd.textContent = arrayCentipedeName[CENTIPEDE_MOVE.DEFECT];
     }
+
     setPlayerTurn((getPlayerTurn() + 2) % 2 + 1);
+    // animation.addEventListener('animationend', () => {
+    if (has_computer_agent && (getPlayerTurn() + 2) % 2 == 0) {
+        // lockButtons(true);
+        let cpu_decision = agent.get_decision(round);
+        console.log(cpu_decision);
+        cpu_decision = cpu_decision ? CENTIPEDE_MOVE.END : CENTIPEDE_MOVE.CONTINUE;
+        // alert("");
+        setTimeout(() => {
+            startGameRound(cpu_decision);
+            if (cpu_decision == CENTIPEDE_MOVE.CONTINUE) { lockButtons(false); }
+        }, 1000);
+
+        // lockButtons(false);
+    }
+    // })
 }
 
 
@@ -193,7 +212,7 @@ function animateScoreAddition(score_addition, direction) {
             clearInterval(id);
             score_addition.style.opacity = "0%";
         } else {
-            pos -= 3 * direction;
+            pos -= 5 * direction;
             elem.style.top = pos + "px";
         }
     }

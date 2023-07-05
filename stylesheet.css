@@ -139,6 +139,11 @@ body {
 .player_turn {
     grid-column: 2;
     grid-row: 5;
+    border: 2px solid #000000;
+    box-shadow: 2px 2px 5px rgb(68, 68, 68);
+    width: 8rem;
+    place-self: center;
+    padding: 0.3rem;
 }
 
 .player_turn>short {
