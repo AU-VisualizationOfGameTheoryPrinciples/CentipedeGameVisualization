@@ -24,6 +24,23 @@
                 <h1>Centipede Game</h1>
                 <img class="logo logo-bag" src="./img/money_bag.png">
             </div>
+            <button id="help" class="help"><img src="img/q_mark_icon.png" alt="?" style="width: 1rem; height: auto;"></button>
+            <div id="intro">
+                <p class="brief_introduction">On this site you can play the Centipede Game.</p>
+                <p>There are two players switching turns and
+                    by
+                    continuing they increase the payoff but also the chance the other player quits for getting a better
+                    payoff. The name "Centipede" comes from the graph you can draw for the possible payoffs of each player.
+                </p>
+                <div class="desc_img_container">
+                    <img class="desc_img" src="img/centipede_game_desc.png" alt="game description">
+                    <img class="desc_img" src="img/centipede_graph_desc.png" alt="game description">
+                </div>
+                <p>Based on Backwards Induction the best play for the first player is to quit on the first round, if they
+                    expect, the game won't continue till the end. Player 1 can choose first if to continue or end the
+                    game, than it's player 2's turn. It continues till one of the players is ending the game or the last
+                    round is reached.</p>
+            </div>
             <p id="round">Round: <short><short id="round_value">0</short>/15</short></p>
             <p class="player_turn">Player Turn: <short id="player_turn"></short></p>
             <div class="game_center">
@@ -43,3 +60,4 @@
 </html>
 
 <script type="module" src="./setScore.js"></script>
+<script type="module" src="./hideScreenElements.js"></script>
