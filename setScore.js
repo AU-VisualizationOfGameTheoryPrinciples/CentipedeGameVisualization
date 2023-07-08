@@ -88,22 +88,25 @@ function endGame(ending_move) {
     let winningMessage = "That player has " + (getScore(currentPlayer) - getScore(otherPlayer)) + " more bucks than Player " + otherPlayer + "!";
     switch (ending_move) {
         case CENTIPEDE_MOVE.END: {
-            if (checkRound(0)) {
+            if (checkRound(currentPlayer-1)) {
                 finishingMessage += "right away!\n";
+                finishingMessage += "Based on Backwards Induction and the priority of winning, that was the best play!\n";
             } else {
                 finishingMessage += "in between.\n";
+                finishingMessage += "Like in the statistical Centipede Game sample cases, they wanted to get some profit before ending.\n";
             }
             finishingMessage += winningMessage;
             break;
         }
         case CENTIPEDE_MOVE.DEFECT: {
             finishingMessage += "and defected at the last turn.\n";
+            finishingMessage += "They wanted to maximize their payoff.\n";
             finishingMessage += winningMessage;
             break;
         }
         case CENTIPEDE_MOVE.HONOR: {
             finishingMessage += "and shared the money with Player " + otherPlayer + ".\n";
-            finishingMessage += "They both won " + getScore(1) + "$!";
+            finishingMessage += "They both went the social path and won " + getScore(1) + "$!";
             break;
         }
     }

@@ -1,5 +1,5 @@
-const Centipede_Strategy_Types = { GREEDY: 0, CASUAL: 1, SOCIAL: 2 };
-const CENTI_TYPES = [Centipede_Strategy_Types.GREEDY, Centipede_Strategy_Types.CASUAL, Centipede_Strategy_Types.SOCIAL];
+const Centipede_Strategy_Types = { EGO: 0, CASUAL: 1, SOCIAL: 2 };
+const CENTI_TYPES = [Centipede_Strategy_Types.EGO, Centipede_Strategy_Types.CASUAL, Centipede_Strategy_Types.SOCIAL];
 
 var endingRound;
 var agent;
@@ -46,7 +46,7 @@ class Centipede_Strategy {
 
     set_strategy_percentages() {
         switch (this.type) {
-            case Centipede_Strategy_Types.GREEDY:
+            case Centipede_Strategy_Types.EGO:
                 this.first_percentage = 60;
                 this.mid_percentage = 80;
                 this.end_percentage = 100;
