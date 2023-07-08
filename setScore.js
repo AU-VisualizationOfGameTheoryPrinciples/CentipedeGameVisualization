@@ -1,3 +1,4 @@
+import { continueSound, playContinueSound } from "./Audio_Setup.js";
 import { setupAgent } from "./Centipede_Agent.js";
 import { drawCentipede, drawPoint, drawTriangleArrow, setText } from "./drawCentipede.js";
 
@@ -120,6 +121,7 @@ function startGameRound(move) {
     }
 
     if (move == CENTIPEDE_MOVE.CONTINUE) {
+        playContinueSound();
         setScore(1, 1);
         setScore(2, 1);
         if (checkRound(ENDING_ROUND)) {
@@ -164,7 +166,10 @@ function startGameRound(move) {
         // alert("");
         setTimeout(() => {
             startGameRound(cpu_decision);
-            if (cpu_decision == CENTIPEDE_MOVE.CONTINUE) { lockButtons(false); }
+            if (cpu_decision == CENTIPEDE_MOVE.CONTINUE) {
+                playContinueSound();
+                lockButtons(false);
+            }
         }, 1000);
 
         // lockButtons(false);
