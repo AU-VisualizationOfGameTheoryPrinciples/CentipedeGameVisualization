@@ -1,5 +1,5 @@
-const continueSound = new Audio("./sound/coin_throw.mp4");
-const endingSound = new Audio("./sound/coin_throw.mp4");
+const continueSound = new Audio("../sound/coin_throw.mp4");
+const endingSound = new Audio("../sound/coin_throw.mp4");
 
 function playContinueSound() {
     continueSound.load();
