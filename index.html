@@ -28,11 +28,51 @@
             </p>
             <p>Based on Backwards Induction the best play for the first player is to quit on the first round, if they
                 expects, the game won't continue till the end.</p>
-            <p>On the following page two persons can play the game. Player 1 can choose first if to continue or end the
+            <h3>Broader Game Theory Introduction:</h3>
+            <h4>I. Learning Objectives of the Centipede Game</h4>
+            <ul style="text-align: start;">
+                <li> explain what an extensive-form game is;</li>
+                <li> explain what a subgame perfect Nash equilibrium (SPNE) is.</li>
+                <li> explain the Nash equilibrium and subgame perfect Nash equilibria of The Centipede Game.</li>
+                <li> use backwards induction to find SPNE of extensive-form games.</li>
+            </ul>
+            <h4>II. Introduction</h4>
+            <p>The (N-turn) Centipede Game is an <strong>extensive form game</strong> with two players. In the first
+                turn of the game,
+                Player 1 and Player 2 are presented with a sum of money $. Player 1 can either choose to take, and get
+                more money than Player 2, or pass. If Player 1 takes the money the game is over. If Player 1 passes, the
+                sum of money is altered and now Player 2 can decide to take or pass on it. If Player 2 takes, they get
+                more money than Player 1 and the game ends. If Player 2 passes, again the sum of money is altered, and
+                now the second turn of the game starts. This process repeats until one of the players decides to take
+                the money, or until the game runs out of N turns. If each player passes for every turn in the game, both
+                players leave with an equal amount of money.</p>
+            <h4>III. Important Concept</h4>
+            <p>Subgame perfect Nash equilibrium is a refinement to the concept of a Nash equilibrium (see: <a
+                    href="https://hammerhead-app-yndie.ondigitalocean.app/">The prisoner's
+                    dilemma game</a>). First, any <em>subgame perfect</em> Nash equilibrium of a game is also a
+                <strong>Nash equilibrium</strong> of that
+                game. Second, subgame perfect Nash equilibria captures the idea of “perfect recall” where players
+                “remember” their past action choices as they progress through the game and use their “memories” to play
+                “better” as the game progresses. That is, in a SPNE, players act like they would act in hindsight.
+            </p>
+
+            <h3>Let's Play!</h3>
+            <p>On the following page two persons or one person and a computer can play the game. Player 1 can choose
+                first if to continue or end the
                 game, than it's player 2's turn. It continues till one of the players is ending the game or the last
-                round is reached. The graph shows the possible payoffs for each player and the current state of the game.</p>
-            <p>Press the Button to play the Game.</p>
-            <button class="button_shadow" onclick="window.location.href='./centipede_game_with_graph.html';">Continue</button>
+                round is reached. The graph shows the possible payoffs for each player and the current state of the
+                game.</p>
+            <p>Choose one of the buttons to play either the simple version of the Game or a version with the Centipede
+                Graph with 2 human players. The third buttons lets you play against a computer player.</p>
+            <div style="display: flex; flex-direction: row; justify-content: center;">
+                <button class="button_shadow" onclick="window.location.href='./centipede_game.html';">Simple Game (2
+                    Human Players)</button>
+                <button class="button_shadow" onclick="window.location.href='./centipede_game_with_graph.html';">Game
+                    with Centipede Graph (2 Human Players)</button>
+                <button class="button_shadow"
+                    onclick="window.location.href='./centipede_game_with_graph_and_agent.html';">Game with Centipede
+                    Graph (vs. Computer Player)</button>
+            </div>
         </div>
     </div>
 </body>
