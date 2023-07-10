@@ -1,5 +1,9 @@
 const whiteColor = "#FFFFFF";
-const lineSteps = 50;
+var tempX;
+var tempYBase;
+var lineSteps;
+var lineSteps2;
+
 var canvas = document.getElementById("centipede_graph");
 if (canvas){
     var ctx = canvas.getContext("2d");
@@ -21,6 +25,13 @@ if (canvas){
 // ctx.fillStyle = "#FFFFFF";
 // ctx.fill();
 // drawCentipede();
+
+function setCentipedeParams(tempXVar, tempYVar, lineStepsVar, lineSteps2Var) {
+    tempX = tempXVar;
+    tempYBase = tempYVar;
+    lineSteps = lineStepsVar;
+    lineSteps2 = lineSteps2Var;
+}
 
 function drawPoint(x, y, color) {
     ctx.beginPath();
@@ -67,8 +78,8 @@ function drawTriangleArrow(tipX, tipY, color, rightOrDown = "right") {
 function drawCentipede() {
     const ENDING_ROUND_VALUE = 15;
     let counter = 0;
-    let tempX = canvas.width / 2;
-    let tempY = 20;
+    // let tempX = canvas.width / 2;
+    let tempY = tempYBase;
     while(counter<=ENDING_ROUND_VALUE){
         drawLine(tempX, tempY, tempX, tempY+lineSteps);
         drawLine(tempX, tempY+lineSteps, tempX+lineSteps, tempY+lineSteps);
@@ -86,4 +97,25 @@ function drawCentipede() {
     drawLine(tempX, tempY, tempX, tempY+lineSteps);
 }
 
-export {drawPoint, drawRectangle, drawLine, drawTriangleArrow, drawCentipede, setText};
+function drawScores(score_defect_add, ENDING_ROUND) {
+    // var ctx = canvas.getContext("2d");
+    // var lineSteps2 = 50;
+    // var tempX = canvas.width / 2;
+    var tempY = tempYBase;
+
+    for (let i = 0; i <= ENDING_ROUND; i++) {
+        let utility_value_p1 = i + score_defect_add * ((i + 1) % 2);
+        let utility_value_p2 = i + score_defect_add * (i % 2);
+        setText(tempX + lineSteps2, tempY + lineSteps2 + 5, `(${utility_value_p1},${utility_value_p2})`);
+        tempY = tempY + lineSteps2 + 10;
+    }
+    setText(tempX - 25, tempY + lineSteps2 + 20, `(${ENDING_ROUND + score_defect_add / 2},${ENDING_ROUND + score_defect_add / 2})`);
+}
+
+// Maybe add a version with only loop rather than 2 loops
+function drawCentipedeWithScores(score_defect_add, ENDING_ROUND) {
+    drawCentipede();
+    drawScores(score_defect_add, ENDING_ROUND);
+}
+
+export {setCentipedeParams, drawPoint, drawRectangle, drawLine, drawTriangleArrow, drawCentipedeWithScores, setText};

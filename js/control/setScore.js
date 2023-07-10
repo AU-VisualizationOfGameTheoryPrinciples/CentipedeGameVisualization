@@ -1,6 +1,6 @@
-import { continueSound, playContinueSound } from "../model/Audio_Setup.js";
+import { playContinueSound } from "../model/Audio_Setup.js";
 import { setupAgent } from "../model/Centipede_Agent.js";
-import { drawCentipede, drawPoint, drawTriangleArrow, setText } from "../view/drawCentipede.js";
+import { drawCentipedeWithScores, drawPoint, drawTriangleArrow, setCentipedeParams, setText} from "../view/drawCentipede.js";
 
 var has_computer_agent = document.getElementById("p2_score").textContent.match("CPU") != null;
 var agent;
@@ -33,26 +33,15 @@ if (has_computer_agent) {
     console.log(agent.strategy.type);
 }
 
-/* TO BE MOVED IN ANOTHER MODULE */
-
 var canvas = document.getElementById("centipede_graph");
 if (canvas) {
-    drawCentipede();
-    var ctx = canvas.getContext("2d");
-    var lineSteps2 = 50;
     var tempX = canvas.width / 2;
     var tempY = 20;
-
-    for (let i = 0; i <= ENDING_ROUND; i++) {
-        let utility_value_p1 = i + score_defect_add * ((i + 1) % 2);
-        let utility_value_p2 = i + score_defect_add * (i % 2);
-        setText(tempX + lineSteps2, tempY + lineSteps2 + 5, `(${utility_value_p1},${utility_value_p2})`);
-        tempY = tempY + lineSteps2 + 10;
-    }
-    setText(tempX - 25, tempY + lineSteps2 + 20, `(${ENDING_ROUND + score_defect_add / 2},${ENDING_ROUND + score_defect_add / 2})`);
+    var lineSteps = 50;
+    var lineSteps2 = 50;
+    setCentipedeParams(tempX, tempY, lineSteps, lineSteps2);
+    drawCentipedeWithScores(score_defect_add, ENDING_ROUND);
 }
-
-/**/
 
 function setPlayerTurn(player_num) {
     player_turn.innerText = player_num;
