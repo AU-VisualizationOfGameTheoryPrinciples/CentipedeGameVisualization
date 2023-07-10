@@ -15,7 +15,7 @@ const ENDING_ROUND = 15;
 const score_defect_add = 2;
 
 const CENTIPEDE_MOVE = { CONTINUE: 0, END: 1, HONOR: 2, DEFECT: 3, length: 4 };
-var arrayCentipedeName = [3];
+var arrayCentipedeName = [4];
 arrayCentipedeName[CENTIPEDE_MOVE.CONTINUE] = "continue";
 arrayCentipedeName[CENTIPEDE_MOVE.END] = "end";
 arrayCentipedeName[CENTIPEDE_MOVE.HONOR] = "honor";
