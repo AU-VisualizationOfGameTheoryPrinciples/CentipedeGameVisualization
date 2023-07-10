@@ -1,6 +1,6 @@
-import { continueSound, playContinueSound } from "./Audio_Setup.js";
-import { setupAgent } from "./Centipede_Agent.js";
-import { drawCentipede, drawPoint, drawTriangleArrow, setText } from "./drawCentipede.js";
+import { continueSound, playContinueSound } from "../model/Audio_Setup.js";
+import { setupAgent } from "../model/Centipede_Agent.js";
+import { drawCentipede, drawPoint, drawTriangleArrow, setText } from "../view/drawCentipede.js";
 
 var has_computer_agent = document.getElementById("p2_score").textContent.match("CPU") != null;
 var agent;
