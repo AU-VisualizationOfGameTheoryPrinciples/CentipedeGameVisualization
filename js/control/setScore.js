@@ -1,4 +1,4 @@
-import { playContinueSound } from "../model/Audio_Setup.js";
+import { playContinueSound, playEndingSound } from "../model/Audio_Setup.js";
 import { setupAgent } from "../model/Centipede_Agent.js";
 import { drawCentipedeWithScores, drawPoint, drawTriangleArrow, setCentipedeParams, setText} from "../view/drawCentipede.js";
 
@@ -99,6 +99,7 @@ function endGame(ending_move) {
             break;
         }
     }
+    playEndingSound();
     setTimeout(() => alert(finishingMessage), 500);
 }
 
