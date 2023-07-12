@@ -300,6 +300,11 @@ body {
     }
 }
 
+.site_buttons > button {
+    max-width: 20rem;
+    justify-self: center;
+}
+
 /* #form {
     display: flex;
     flex-direction: column;

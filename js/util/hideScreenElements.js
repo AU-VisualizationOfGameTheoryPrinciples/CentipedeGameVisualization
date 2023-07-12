@@ -2,6 +2,10 @@ var helpInfo = document.getElementById('help');
 var isInfoHidden;
 if(helpInfo){
     helpInfo.addEventListener("click", () => hideInfo(true));
+    let helpInfoClose = document.getElementById('close_help');
+    if (helpInfoClose) {
+        helpInfoClose.addEventListener("click", () => hideInfo(true));
+    }
     isInfoHidden = getFlag(localStorage['isInfoHidden']);
     hideInfo(false);
 }

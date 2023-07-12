@@ -27,7 +27,7 @@
                 continuing they increase the payoff but also the chance the other player quits for getting a better
                 payoff. The name "Centipede" comes from the graph you can draw for the possible payoffs of each player.
             </p>
-            <div style="border: 1px solid #000000; padding: 5%; text-rendering: optimizeSpeed;">
+            <div id="game_theory" style="border: 1px solid #000000; padding: 5%; text-rendering: optimizeSpeed; margin: 0rem 4rem;">
                 <h3>Broader Game Theory Introduction:</h3>
                 <div id="includedContent"></div>
                 <div><button id="intro-prev-button" class="button_shadow"><< prev</button><button id="intro-continue-button" class="button_shadow">continue >></button></div>
@@ -36,14 +36,14 @@
             <h3>Let's Play!</h3>
             <p>On the following page two persons or one person and a computer can play the game. Player 1 can choose
                 first if to <strong>continue</strong> or <strong>end</strong> the
-                game, than it's player 2's turn. It continues till one of the players is ending the game or the last
+                game, then it's player 2's turn. It continues till one of the players is ending the game or the last
                 round is reached. The graph shows the possible payoffs for each player and the current state of the
                 game.</p>
             <p>Based on Backwards Induction the best play for the first player is to quit on the first round, if they
                 expect, the game won't continue till the end. But more money, a longer game or social thoughts can change the perception of what is desirable.</p>
             <p>Choose one of the buttons to play either the simple version of the Game or a version with the Centipede
-                Graph with 2 human players. The third buttons lets you play against a computer player.</p>
-            <div style="display: flex; flex-direction: row; justify-content: center;">
+                Graph with 2 human players. The third button lets you play against a computer player.</p>
+            <div class="site_buttons" style="display: grid; justify-self: center; row-gap: 1rem;">
                 <button class="button_shadow" onclick="window.location.href='./html/centipede_game.html';">Simple Game (2
                     Human Players)</button>
                 <button class="button_shadow" onclick="window.location.href='./html/centipede_game_with_graph.html';">Game
