@@ -1,6 +1,7 @@
 import { playContinueSound, playEndingSound } from "../model/Audio_Setup.js";
 import { setupAgent } from "../model/Centipede_Agent.js";
 import { drawCentipedeWithScores, drawPoint, drawTriangleArrow, setCentipedeParams, setText} from "../view/drawCentipede.js";
+import { createReplayButton } from "./replay.js";
 
 var has_computer_agent = document.getElementById("p2_score").textContent.match("CPU") != null;
 var agent;
@@ -100,7 +101,10 @@ function endGame(ending_move) {
         }
     }
     playEndingSound();
-    setTimeout(() => alert(finishingMessage), 500);
+    setTimeout(() => {
+        alert(finishingMessage); 
+        createReplayButton();
+    }, 500);
 }
 
 setPlayerTurn(1);
