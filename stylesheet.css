@@ -204,7 +204,8 @@ body {
 
     .canvas {
         overflow-y: unset;
-        height: 80%;
+        /* height: 80%; */
+        height: 62%;
         display: flex;
     }
 
@@ -333,7 +334,7 @@ body {
 .overlay {
     position:absolute;
     width:100%;
-    height: 160%;
+    height: 100%;
     left:0px;
     top:0px;
     background:#8da146f2;
