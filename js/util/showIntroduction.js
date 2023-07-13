@@ -37,7 +37,7 @@ function toggleIndex(add, borderWarps = null) {
 }
 
 function buttonAction(add) {
-    toggleIndex(add, "end");
+    toggleIndex(add, "both");
     loadContent(paths[index]);
 }
 

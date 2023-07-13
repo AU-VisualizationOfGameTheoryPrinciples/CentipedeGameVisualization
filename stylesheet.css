@@ -250,7 +250,7 @@ body {
     background-color: #efefef;
     box-shadow: 2px 2px 5px rgb(68, 68, 68);
     /* height: 100%; */
-    top: 9rem;
+    top: 6rem;
 }
 
 .desc_img {
@@ -329,7 +329,13 @@ body {
     font-size: medium;
 }
 
-
+#game_theory {
+    border: 1px solid #000000;
+    padding: 5%;
+    text-rendering: optimizeSpeed;
+    /* margin: 0rem 4rem; */
+    max-width: 60rem;
+}
 
 .overlay {
     position:absolute;
