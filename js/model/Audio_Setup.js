@@ -1,17 +1,17 @@
 const continueSound = new Audio("../sound/coin_throw.mp4");
 const endingSound = new Audio("../sound/multi_coin_throw.mp4");
 
-function playContinueSound() {
-    playSound(continueSound);
+async function playContinueSound() {
+    await playSound(continueSound);
 }
 
-function playEndingSound() {
-    playSound(endingSound);
+async function playEndingSound() {
+    await playSound(endingSound);
 }
 
-function playSound(soundAudio) {
+async function playSound(soundAudio) {
     soundAudio.load();
-    soundAudio.play();
+    await soundAudio.play();
 }
 
 export { continueSound, playContinueSound, playEndingSound };

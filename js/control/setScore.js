@@ -22,12 +22,12 @@ arrayCentipedeName[CENTIPEDE_MOVE.END] = "end";
 arrayCentipedeName[CENTIPEDE_MOVE.HONOR] = "honor";
 arrayCentipedeName[CENTIPEDE_MOVE.DEFECT] = "defect";
 
-buttonContinue.addEventListener("click", () => {
+buttonContinue.addEventListener("click", async () => {
     lockButtons(true);
-    startGameRound(CENTIPEDE_MOVE.CONTINUE);
+    await startGameRound(CENTIPEDE_MOVE.CONTINUE);
 }
 );
-buttonEnd.addEventListener("click", () => setTimeout(startGameRound(CENTIPEDE_MOVE.END), 1000));
+buttonEnd.addEventListener("click", async() => setTimeout(await startGameRound(CENTIPEDE_MOVE.END), 1000));
 
 if (has_computer_agent) {
     agent = setupAgent();
@@ -109,7 +109,7 @@ function endGame(ending_move) {
 
 setPlayerTurn(1);
 
-function startGameRound(move) {
+async function startGameRound(move) {
     // lockButtons(true);
     let round = getRoundValue();
 
@@ -118,7 +118,7 @@ function startGameRound(move) {
     }
 
     if (move == CENTIPEDE_MOVE.CONTINUE) {
-        playContinueSound();
+        await playContinueSound();
         setScore(1, 1);
         setScore(2, 1);
         if (checkRound(ENDING_ROUND)) {
@@ -157,14 +157,13 @@ function startGameRound(move) {
     // animation.addEventListener('animationend', () => {
     if (has_computer_agent && (getPlayerTurn() + 2) % 2 == 0) {
         // lockButtons(true);
-        let cpu_decision = agent.get_decision(round);
-        console.log(cpu_decision);
+        let cpu_decision = agent.get_decision(getRoundValue());
         cpu_decision = cpu_decision ? CENTIPEDE_MOVE.END : CENTIPEDE_MOVE.CONTINUE;
         // alert("");
-        setTimeout(() => {
-            startGameRound(cpu_decision);
+        setTimeout(async () => {
+            await startGameRound(cpu_decision);
             if (cpu_decision == CENTIPEDE_MOVE.CONTINUE) {
-                playContinueSound();
+                await playContinueSound();
                 lockButtons(false);
             }
         }, 1000);

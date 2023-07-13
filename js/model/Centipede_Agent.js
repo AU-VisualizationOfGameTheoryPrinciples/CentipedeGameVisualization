@@ -1,4 +1,4 @@
-const Centipede_Strategy_Types = { EGO: 0, CASUAL: 1, SOCIAL: 2 };
+const Centipede_Strategy_Types = { EGO: "EGO", CASUAL: "CASUAL", SOCIAL: "SOCIAL" };
 const CENTI_TYPES = [Centipede_Strategy_Types.EGO, Centipede_Strategy_Types.CASUAL, Centipede_Strategy_Types.SOCIAL];
 
 var endingRound;
@@ -47,14 +47,14 @@ class Centipede_Strategy {
     set_strategy_percentages() {
         switch (this.type) {
             case Centipede_Strategy_Types.EGO:
-                this.first_percentage = 60;
-                this.mid_percentage = 80;
+                this.first_percentage = 55;
+                this.mid_percentage = 70;
                 this.end_percentage = 100;
                 break;
             case Centipede_Strategy_Types.CASUAL:
                 this.first_percentage = 35;
-                this.mid_percentage = 50;
-                this.end_percentage = 70;
+                this.mid_percentage = 45;
+                this.end_percentage = 55;
                 break;
             case Centipede_Strategy_Types.SOCIAL:
                 this.first_percentage = 20;
