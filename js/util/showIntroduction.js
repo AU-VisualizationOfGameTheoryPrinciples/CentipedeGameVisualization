@@ -8,6 +8,7 @@ var paths = new Array();
 paths.push("./html/template/LO.html");
 paths.push("./html/template/introduction.html");
 paths.push("./html/template/concept.html");
+paths.push("./html/template/furtherReadings.html");
 
 loadContent(paths[index]);
 

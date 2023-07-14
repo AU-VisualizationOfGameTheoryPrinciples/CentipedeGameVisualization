@@ -4,6 +4,7 @@ This is a Visualization of the Centipede Game in Game Theory made by M-Gentes in
 There are two players switching turns and by
 continuing they increase the payoff but also the chance the other player quits for getting a better
 payoff. The name "Centipede" comes from the graph you can draw for the possible payoffs of each player.
+
 ## Learning Objectives of the Centipede Game
 
 - explain what an extensive-form game is;
@@ -18,3 +19,9 @@ The (N-turn) Centipede Game is an extensive form game with two players. In the f
 ## Important concept:
 
 Subgame perfect Nash equilibrium is a refinement to the concept of a Nash equilibrium (see: [The prisoner's dilemma game](https://github.com/hbala1-source/AU-PrisonersDilemma)).  First, any subgame perfect Nash equilibrium of a game is also a Nash equilibrium of that game. Second, subgame perfect Nash equilibria captures the idea of “perfect recall” where players “remember” their past action choices as they progress through the game and use their “memories” to play “better” as the game progresses. That is, in a SPNE, players act like they would act in hindsight.
+
+## Further readings:
+
+- 1. more complex game: [pirate game](https://en.wikipedia.org/wiki/Pirate_game)
+    - Deciding to share money amongst a group of people with different vote hierarchy and the distribution planner with highest hierarchy can be thrown overboard
+    - Pirates must not be social and want at least some of the money
