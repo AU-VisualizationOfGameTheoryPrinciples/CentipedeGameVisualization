@@ -1,3 +1,7 @@
+/**
+ * restart game via replay button by refreshing the page
+ * An overlay blocks all other buttons, but you can still see the results
+ */
 function createReplayButton() {
     var replayButton = document.createElement("button");
     var overlay = document.createElement("div");

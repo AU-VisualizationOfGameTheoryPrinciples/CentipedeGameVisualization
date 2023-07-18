@@ -49,6 +49,10 @@ function setPlayerTurn(player_num) {
     player_turn.innerText += addNameForCPUGame(player_num);
 }
 
+/**
+ * add name tags for game with human player against computer
+ * @param {number} player_num 
+ */
 function addNameForCPUGame(player_num) {
     if (has_computer_agent) {
         let agent_name = player_num == 1 ? "(You)" : "(CPU)";

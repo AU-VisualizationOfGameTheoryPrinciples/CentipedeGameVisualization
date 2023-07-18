@@ -8,24 +8,14 @@ var canvas = document.getElementById("centipede_graph");
 if (canvas){
     var ctx = canvas.getContext("2d");
 }
-// ctx.moveTo(0, 20);
-// ctx.lineTo(100, 20);
-// ctx.stroke();
-// ctx.moveTo(100, 20);
-// ctx.lineTo(200, 20);
-// ctx.stroke();
-// ctx.moveTo(100, 20);
-// ctx.lineTo(100, 120);
-// ctx.stroke();
-// ctx.font = "1rem Arial";
-// ctx.fillText(" (0,1) ", 100, 110);
-// ctx.beginPath();
-// ctx.arc(100, 20, 10, 0, 2 * Math.PI);
-// ctx.stroke();
-// ctx.fillStyle = "#FFFFFF";
-// ctx.fill();
-// drawCentipede();
 
+/**
+ * set variables for Centipede drawing
+ * @param {number} tempXVar starting x coordinate
+ * @param {number} tempYVar starting y coordinate
+ * @param {number} lineStepsVar distance between points/lines
+ * @param {number} lineSteps2Var distance between points/lines
+ */
 function setCentipedeParams(tempXVar, tempYVar, lineStepsVar, lineSteps2Var) {
     tempX = tempXVar;
     tempYBase = tempYVar;
@@ -45,7 +35,6 @@ function setText(x, y, content) {
     ctx.font = "1rem Arial";
     ctx.fillStyle = "#000000";
     ctx.fillText(content, x, y);
-    // ctx.fillText(content, x, y);
     // ctx.strokeText(content, x, y);
 }
 
@@ -86,7 +75,7 @@ function drawCentipede() {
         if(counter<ENDING_ROUND_VALUE)
         drawLine(tempX, tempY+lineSteps, tempX-lineSteps, tempY+lineSteps);
         drawPoint(tempX, tempY+lineSteps, whiteColor);
-    //  getUtility()
+        //  getUtility()
         // let utilityText = " (0,1) ";
         // setText(tempX+lineSteps, tempY+lineSteps + 5, utilityText);
         setText(tempX-5, tempY+lineSteps+5, counter%2+1)
@@ -112,7 +101,7 @@ function drawScores(score_defect_add, ENDING_ROUND) {
     setText(tempX - 25, tempY + lineSteps2 + 20, `(${ENDING_ROUND + score_defect_add / 2},${ENDING_ROUND + score_defect_add / 2})`);
 }
 
-// Maybe add a version with only loop rather than 2 loops
+// Maybe add a version with only one loop rather than 2 loops
 function drawCentipedeWithScores(score_defect_add, ENDING_ROUND) {
     drawCentipede();
     drawScores(score_defect_add, ENDING_ROUND);

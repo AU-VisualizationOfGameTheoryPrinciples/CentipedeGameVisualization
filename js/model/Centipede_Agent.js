@@ -1,3 +1,9 @@
+/**
+ * Centipede Strategy sets how urgent the agent is to finish the game at a certain point in game
+ *  - EGO: wants to win the most, so according to Backwards Induction, finishing the game early to win
+ *  - CASUAL: wants to get some payoff before finishing
+ *  - SOCIAL: wants both players to get some payoff, so honors most likely at the end
+ */
 const Centipede_Strategy_Types = { EGO: "EGO", CASUAL: "CASUAL", SOCIAL: "SOCIAL" };
 const CENTI_TYPES = [Centipede_Strategy_Types.EGO, Centipede_Strategy_Types.CASUAL, Centipede_Strategy_Types.SOCIAL];
 
@@ -10,6 +16,10 @@ function setupAgent(ending_round) {
     return agent;
 }
 
+/**
+ * set last round/turn for agent to consider if they want to honor or defect
+ * @param {number} ending_round 
+ */
 function setEndingRound(ending_round) {
     endingRound = ending_round;
 }
@@ -17,7 +27,7 @@ function setEndingRound(ending_round) {
 class Centipede_Agent {
     id;
     score;  // score how accurate the predictions are
-    strategy;
+    strategy; // Centipede Strategy sets how urgent the agent is to finish the game at a certain point in game
 
     constructor(id) {
         this.id = id;
@@ -33,9 +43,9 @@ class Centipede_Agent {
 
 class Centipede_Strategy {
     player_id;
-    first_percentage;
-    mid_percentage;
-    end_percentage;
+    first_percentage; // percentage of finishing right at the first chance
+    mid_percentage; // percentage of finishing in between start and end
+    end_percentage; // percentage of defecting at the last turn
     type;
 
     constructor(player_id, type) {
