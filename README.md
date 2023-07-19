@@ -25,3 +25,17 @@ Subgame perfect Nash equilibrium is a refinement to the concept of a Nash equili
 - 1. more complex game: [pirate game](https://en.wikipedia.org/wiki/Pirate_game)
     - Deciding to share money amongst a group of people with different vote hierarchy and the distribution planner with highest hierarchy can be thrown overboard
     - Pirates must not be social and want at least some of the money
+
+## Images:
+
+- Centipede base game description
+    - ![Centipede base game description](./img/centipede_game_desc.png)
+
+- Centipede graph description
+    - ![Centipede graph description](./img/centipede_graph_desc.png)
+
+- Centipede process diagramm
+    - ![Centipede process diagramm](./img/Centipede_process_diagramm.png)
+
+- Centipede code diagramm
+    - ![Centipede code diagramm](./img/Centipede_code_diagramm.png)
